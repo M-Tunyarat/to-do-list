@@ -25,9 +25,9 @@ const styles = {
         },
 };
 
-const CompletedSection = ({ list, onToggleCompletedList, onDeleteTask, onToggleListItem, onEditTask, classes }) => {
+const Selection = ({ list, completeList, delTodo, listItem, classes }) => {
 
-        const [hide, setHide] = useState(onToggleCompletedList);
+        const [hide, setHide] = useState(completeList);
 
         const handleHide = (e) => {
                 setHide(e.target.checked)
@@ -39,16 +39,16 @@ const CompletedSection = ({ list, onToggleCompletedList, onDeleteTask, onToggleL
                                         {list().filter(data => data.isCompleted && !data.isDeleted).length} Completed
                                 </Grid>
                                 <Grid item>
-                                        <Switch value={false} onClick={onToggleCompletedList} onChange={handleHide}/>
+                                        <Switch value={false} onClick={completeList} onChange={handleHide}/>
                                 </Grid>
                         </Grid>
                         <Divider className={classes.divider}/>
                         {
-                                !hide && <List list={list} isCompleted onDeleteTask={onDeleteTask} onToggleListItem={onToggleListItem} onEditTask={onEditTask}/>
+                                !hide && <List list={list} isCompleted delTodo={delTodo} listItem={listItem}/>
                         }
                         
                 </div>
         );
 }
 
-export default withStyles(styles)(CompletedSection) 
+export default withStyles(styles)(Selection) 

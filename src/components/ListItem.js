@@ -33,23 +33,22 @@ const styles = {
         }
 };
 
-const ListItem = ({id, title, checkbox, classes, onDeleteTask, onToggleListItem, onEditTask}) => {
+const ListItem = ({id, title, checkbox, classes, delTodo, listItem}) => {
 
         return (
                 <Paper className={classes.root}>
                         <Checkbox
                                 checked={checkbox}
-                                onClick={() => onToggleListItem(id)}
+                                onClick={() => listItem(id)}
                         />
                         <InputBase 
                                 className={classes.input}
                                 value={title}
                                 placeholder={title}
                                 fullWidth
-                                onChange={(e) => onEditTask(id, e)}
                         />
                         <Divider className={classes.divider} />
-                        <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={() => onDeleteTask(id)}>
+                        <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={() => delTodo(id)}>
                                 <Delete/>
                         </IconButton>
                 </Paper >
